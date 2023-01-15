@@ -1,0 +1,74 @@
+﻿@using Library.Models;
+@model IEnumerable<Book>
+
+@{
+    ViewBag.Title = "Бібліотека";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.ActionLink("Додати книгу","Create")
+
+<form method="get">
+    <div>
+        <label>Автор: </label>
+        @Html.DropDownList("author", ViewBag.Authors as SelectList,"Всі")
+        <label>Книга: </label>
+        @Html.DropDownList("book", ViewBag.Books as SelectList,"Всі")
+
+        <input type="submit" value="Фільтр" />
+    </div>
+</form>
+
+<table>
+    <tr>
+        <th>Номер</th>
+        <th>Автор</th>
+        <th>Назва книги</th>
+        <th>Дата публікації</th>
+        <th>Видавнцтво</th>
+        <th>Мова</th>
+        <th></th>
+    </tr>
+
+    @foreach (Book item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(m => item.id)
+            </td>
+            <td>
+                @foreach (Author a in item.Authors.Select(bta=>bta.Author))
+                {
+                    string author = a.Name + " " + a.Surname;
+
+                    if (a != item.Authors.Last().Author)
+                    {
+                        author += ", ";
+                    }
+
+                    @Html.DisplayFor(m => author)
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.PublicationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.Publication)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.Language)
+            </td>
+            <td>
+                @{
+
+                    @Html.ActionLink("Видалити книгу", "Delete", new { id = item.id })
+                }
+            </td>
+        </tr>
+
+                    }
+</table>
+

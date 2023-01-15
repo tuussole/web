@@ -1,0 +1,22 @@
+﻿@model Library.Models.Author
+
+@{
+    ViewBag.Title = "Додати автора";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(m => m.Name, "Ім'я")
+    <br />
+    @Html.EditorFor(m => m.Name)
+    <br /><br />
+    @Html.LabelFor(m => m.Surname, "Прізвище")
+    <br />
+    @Html.EditorFor(m => m.Surname)
+    <br /><br />
+
+    <input type="submit" value="Додати" />
+}

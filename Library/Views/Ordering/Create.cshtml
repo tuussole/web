@@ -1,0 +1,34 @@
+﻿@using Library.Models;
+@{
+    ViewBag.Title = "Створити замовлення";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model OrderForm
+
+
+<h2>Замовлення</h2>
+
+@using (Html.BeginForm())
+{
+    <fieldset>
+       <p>
+            Студент<br />
+            @Html.DropDownListFor(m => m.StudentId, ViewBag.Students as SelectList,"Студент")
+        </p>
+        <p>
+            Книга<br />
+            @Html.DropDownList("id", ViewBag.Books as SelectList,"Книга")
+        </p>
+        <p>
+
+        </p>
+        <p>
+            <input type="submit" value="Зберегти" />
+        </p>
+    </fieldset>
+}
+<div>
+    @Html.ActionLink("Назад до замовлень", "Index")
+</div>
+ 
+

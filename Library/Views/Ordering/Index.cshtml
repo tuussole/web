@@ -1,0 +1,60 @@
+﻿@using Library.Models;
+@model IEnumerable<OrderForm>
+@{
+    ViewBag.Title = "Замовлення";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<h2></h2>*@
+
+<p>
+    @Html.ActionLink("Додати замовлення", "Create")
+    @Html.ActionLink("Статистика", "Statistica")
+</p>
+
+<table>
+    <tr>
+        <th>Дата замовлення</th>
+        <th>Дата повернення</th>
+        <th>Студент</th>
+        <th>Книга</th>
+    </tr>
+    @foreach(var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(m => item.ReceiptDate)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.ReturnDate)
+            </td>
+            <td>
+                @{ 
+                    string student = "";
+                    if (item.Student != null)
+                    {
+                        if (item.Student.NumberStudentCard != null)
+                        {
+                            student += item.Student.NumberStudentCard + " ";
+
+                        }
+                        if (item.Student.Name != null)
+                        {
+                            student += item.Student.Name + " ";
+                        }
+                        if (item.Student.Surname != null)
+                        {
+                            student += item.Student.Surname + " ";
+                        }
+                    }
+                }
+                @Html.DisplayFor(m => student)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.Book.Name)
+            </td>
+        </tr>
+
+    }
+</table>
+

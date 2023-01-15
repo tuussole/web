@@ -1,0 +1,36 @@
+﻿@using Library.Models;
+@model Book
+@{
+    ViewBag.Title = "Додати книгу";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Додати книгу</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(m => m.Name, "Назва книги")
+    <br />
+    @Html.EditorFor(m => m.Name)
+    <br /><br />
+    @Html.Label("Автор")
+    <div> 
+         @Html.ListBox("authors", ViewBag.Auhtors as MultiSelectList)
+    </div>
+    @Html.ActionLink("Додати автора", "CreateAuthor")
+    <br /><br />
+    @Html.LabelFor(m=>m.Publication,"Видавництво")
+    <br />
+    @Html.EditorFor(m=>m.Publication)
+    <br /><br />
+    @Html.LabelFor(m=>m.PublicationDate,"Дата видавництва")
+    <br />
+    @Html.EditorFor(m=>m.PublicationDate)
+    <br /><br />
+    @Html.LabelFor(m=>m.Language,"Мова")
+    <br />
+    @Html.EditorFor(m => m.Language)
+    <br /><br />
+    <input type="submit" value="Додати" />
+}
+

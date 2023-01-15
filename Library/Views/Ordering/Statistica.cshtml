@@ -1,0 +1,22 @@
+﻿@using Library.Models;
+@{
+    ViewBag.Title = "Статистика";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<table>
+    <tr>
+        <th>Назва</th>
+        <th>Кількість разів видачі</th>
+   </tr>
+    @foreach(Statistica s in ViewBag.Books)
+    {
+        <tr>
+            <td>@Html.DisplayFor(m => s.BookName)</td>
+            <td>@Html.DisplayFor(m => s.Amount)</td>
+        </tr>
+    }
+
+</table>

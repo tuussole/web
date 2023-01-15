@@ -1,0 +1,54 @@
+﻿@using Library.Models;
+@model Student
+
+@{
+    ViewBag.Title = "Інформація про студента";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+    <fieldset>
+        @Html.LabelFor(m => m.Name, "Ім'я студента")        
+        @Html.DisplayFor(m => m.Name)
+        <br />
+        @Html.LabelFor(m => m.Surname, "Прізвище студента")
+        @Html.DisplayFor(m => m.Surname)
+        <br />
+        @Html.LabelFor(m => m.Birthdate, "Дата народження")
+        @Html.DisplayFor(m => m.Birthdate)
+        <br />
+        @Html.LabelFor(m => m.NumberStudentCard, "Номер студентського квитка")
+        @Html.DisplayFor(m => m.NumberStudentCard)
+        <br />
+    </fieldset>
+
+
+<table>
+    <tr>
+        <th>Дата замовлення</th>
+        <th>Дата повернення</th>
+        <th>Книга</th>
+        <th></th>
+    </tr>
+    @foreach (OrderForm item in ViewBag.Books)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(m => item.ReceiptDate)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.ReturnDate)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.Book.Name)
+            </td>
+            <td>
+                @{
+                    if (item.ReturnDate == null)
+                    {
+                        @Html.ActionLink("Повернути", "Return", new { id = item.id })
+                    }
+                }
+            </td>
+        </tr>
+
+                    }
+</table>

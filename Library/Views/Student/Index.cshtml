@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Library.Models.Student>
+
+    @{
+        ViewBag.Title = "Список студентів";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+@Html.ActionLink("Додати студента", "Create")
+
+    <table>
+        <tr>
+            <th>Номер студентського квитка</th>
+            <th>Ім'я</th>
+            <th>Прізвище</th>
+            <th>Дата народження</th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(m => item.NumberStudentCard)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.Surname)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.Birthdate)
+                </td>
+                <td>
+                    @Html.ActionLink("Список книжок", "Detail", new { id = item.Id })
+                    @Html.ActionLink("Видалити", "Delete", new { id = item.Id })
+                </td>
+
+            </tr>
+        }
+    </table>
+

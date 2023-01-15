@@ -1,0 +1,75 @@
+﻿@using Library.Models;
+@model IEnumerable<OrderForm>
+
+@{
+    ViewBag.Title = "Детальна інформація";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    @Html.Label("Книга")
+    @ViewBag.Book.Name
+    <br />
+    @Html.Label("Автор(-и)")
+        
+    @foreach(Author a in ViewBag.Authors)
+    {
+        string author = a.Name + " " + a.Surname;
+
+        if (a != ViewBag.Authors.Last() )
+        {
+            author += ", ";
+        }
+
+        @Html.Display(author);
+    }
+    <br />
+    @Html.Label("Видавництво")
+    @Html.Raw(ViewBag.Book.Publication)
+    @Html.Label("Дата видачі")
+    @Html.Raw(ViewBag.Book.PublicationDate)
+</div>
+
+<table>
+    <tr>
+        <th>Дата замовлення</th>
+        <th>Дата повернення</th>
+        <th>Студент</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(m => item.ReceiptDate)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.ReturnDate)
+            </td>
+            <td>
+                @{
+                    string student = "";
+                    if (item.Student != null)
+                    {
+                        if (item.Student.NumberStudentCard != null)
+                        {
+                            student += item.Student.NumberStudentCard + " ";
+
+                        }
+                        if (item.Student.Name != null)
+                        {
+                            student += item.Student.Name + " ";
+                        }
+                        if (item.Student.Surname != null)
+                        {
+                            student += item.Student.Surname + " ";
+                        }
+                    }
+                }
+                @Html.DisplayFor(m => student)
+            </td>
+        </tr>
+
+                    }
+</table>
+
+

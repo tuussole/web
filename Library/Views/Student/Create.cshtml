@@ -1,0 +1,29 @@
+﻿@model Library.Models.Student
+
+@{
+    ViewBag.Title = "Додати студента";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Додати студента</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(m => m.Name, "Ім'я студента")
+    <br />
+    @Html.EditorFor(m => m.Name)
+    <br /><br />
+    @Html.LabelFor(m => m.Surname, "Прізвище студента")
+    <br />
+    @Html.EditorFor(m => m.Surname)
+    <br /><br />
+    @Html.LabelFor(m=>m.Birthdate,"Дата народження")
+    <br />
+    @Html.EditorFor(m => m.Birthdate)
+    <br /><br />
+    @Html.LabelFor(m=>m.NumberStudentCard,"Номер студентського квитка")
+    <br />
+    @Html.EditorFor(m=>m.NumberStudentCard)
+    <br /><br />
+    <input type="submit" value="Додати" />
+}
